@@ -1,0 +1,25 @@
+.footer {
+    color: white;
+    background-color: rgb(6, 9, 36);
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    padding: 0px 10px;
+    position: fixed;
+}
+
+.footer li {
+    list-style: none;
+}
+
+
+.lista-infos a{
+    margin: 2px 0;
+    text-align: end;
+    text-decoration: none;
+    color: white;
+}

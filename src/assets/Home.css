@@ -1,0 +1,12 @@
+.home{
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+}
+
+.c-body{
+    text-align: center;
+}
+.img{
+    size: 200px;
+}
