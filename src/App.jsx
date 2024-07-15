@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import NotFound from "./pages/NotFound"
 import Rodape from "./components/Rodape"
 import PoliticasPrivacidade from "./pages/PoliticasDePrivacidade"
+import NovaTarefa from "./pages/NovaTarefa"
 
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
@@ -22,6 +23,7 @@ function App() {
           <Route path="/cadastro" element={<Cadastro />}/>
           <Route path="/ajuda" element={<Ajuda />}/>
           <Route path="/politicas-de-privacidade" element={<PoliticasPrivacidade />}/>
+          <Route path="/novatarefa" element={<NovaTarefa />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Rodape />

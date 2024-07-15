@@ -1,2 +1,11 @@
-@import 'bootstrap/dist/css/bootstrap.min.css'
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* essa estilização faz o form ficar centralizado na tela */
+.form-section{
+    width: 320px;
+    margin: 16px auto;
+}
+
+.invalid{
+    color: red;
+}
