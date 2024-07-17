@@ -34,6 +34,17 @@ function Home() {
                     <Button variant="outline-warning">Ver artigo completo</Button>
                 </Card.Body>
             </Card>
+            <Card style={{ width: '300px' }}>
+                <Card.Img className='' src="https://artia.com/wp-content/uploads/2016/11/Management-Project-Online.png" />
+                <Card.Body className='c-body'>
+                    <Card.Title>Trabalho em equipe</Card.Title>
+                    <Card.Text>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. Lorem Ipsum has been the industry's. Various versions have evolved over the years, sometimes by accident. 
+                    </Card.Text>
+                    <Button variant="outline-success">Ver artigo completo</Button>
+                </Card.Body>
+            </Card>
+            
             
         </main>
     );

@@ -3,10 +3,13 @@
     gap: 18px;
     justify-content: center;
     flex-wrap: wrap;
+    height: 100px;
+    width: 100px;
 }
 
 .c-body{
     text-align: center;
+    height: auto;
 }
 .img{
     size: 200px;
