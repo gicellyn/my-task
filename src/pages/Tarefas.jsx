@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Container } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
-import { deleteTarefa, getTarefas } from "../firebase/tarefas";
+import { deleteTarefa, getTarefasUsuario } from "../firebase/tarefas";
 import { useState, useEffect, useContext } from "react";
 import Loader from "../components/Loader";
 import toast from "react-hot-toast";
@@ -19,9 +19,11 @@ function Tarefas() {
 
     function carregarDados() {
         //o then devolve a lista de tarefas da coleção
-        getTarefas().then((resultados) => {
-            setTarefas(resultados);
-        })
+        if(usuario) {
+            getTarefasUsuario(usuario.uid).then((resultados) => {
+              setTarefas(resultados);
+            });
+          }
     }
 
     function deletarTarefas(id) {
@@ -49,6 +51,19 @@ function Tarefas() {
         //usa o componente Navigate quando é para retonar e tiver dentro de uma condição
         return <Navigate to="/login"/>
     }
+    
+    // para uso de varias cores
+    // const categoria = {
+    //     'pessoal': 'primary',
+    //     'trabalho': 'success',
+    //     'urgente': 'danger',
+    //     'estudos': 'warning',
+    //     'lazer': 'info',
+    //     // Adicione mais categorias e cores conforme necessário
+    // };
+    // <Badge className="ms-2" bg={categoriaCores[tarefa.categoria] || 'secondary'}>
+    //                                     {tarefa.categoria}
+    //                                 </Badge>
 
     return (
         <main className="corpo-tarefas">
@@ -69,10 +84,10 @@ function Tarefas() {
                                 </div>
                                 <Button variant="outline-dark" onClick={() => {
                                     navigate(`/tarefas/editar/${tarefa.id}`)
-                                }}><span class="material-symbols-outlined">
+                                }}><span className="material-symbols-outlined">
                                 edit
                                 </span></Button>
-                                <Button variant="outline-danger" onClick={() => deletarTarefas(tarefa.id)}><span class="material-symbols-outlined">
+                                <Button variant="outline-danger" onClick={() => deletarTarefas(tarefa.id)}><span className="material-symbols-outlined">
                                     delete
                                 </span></Button>
                             </Card.Body>

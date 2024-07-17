@@ -23,6 +23,8 @@ function App() {
   // o estado de usuário indica se ele está logado ou não na aplicação
   // null = deslogado
   const [usuarioLogado, setUsuarioLogado] = useState(null);
+  //uso para que a aplicação mude o estado após carregamento[dado que a aplicação não sabe por instantes se o user está logado ou não] e evite que volte para pagina de login
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     //para saber se o usuário deslogou
@@ -31,8 +33,14 @@ function App() {
       //user nulo -> user deslogou
       //se tem objeto -> user logou
       setUsuarioLogado(user);
+      setLoading(false);
     })
   }, []);
+
+  if (loading) {
+    //Esse elemento será exibido enquanto a aplicação estiver sendo carregada, se for null, não será exibido
+    return null;
+  }
 
   //Usuario.Provider é o elemento que irá compartilhar um valor/dado para os elementos filhos da aplicação
   return (

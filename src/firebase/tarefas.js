@@ -3,7 +3,7 @@
 // - listar as tarefas (Read)
 // - atualizar uma tarefa (Update)
 // - deletar uma tarefa (Delete)
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc, where, query} from "firebase/firestore";
 import { db } from "./config";
 
 //Criar uma referência para a coleção no Firestore
@@ -16,16 +16,29 @@ export async function addTarefa(data) {
     await addDoc(tarefasCol, data);
 }
 
-export async function getTarefas() {
-    //snapshot é o resultado da busca na coleção de tarefas
-    const snapshot = await getDocs(tarefasCol); // puxa os documentos da coleção do Firebase
-    const tarefas = []; //array vazio que vai inserir os obj na forma de obj e não de doc como vem do Firebase
+// export async function getTarefas() {
+//     //snapshot é o resultado da busca na coleção de tarefas
+//     const snapshot = await getDocs(tarefasCol); // puxa os documentos da coleção do Firebase
+//     const tarefas = []; //array vazio que vai inserir os obj na forma de obj e não de doc como vem do Firebase
 
-    //Percorremos cada documento da coleção e inserimos no array de tarefas
-    snapshot.forEach((doc) => {//percorre esse snapshot, e para cada doc coloca nesse obj tarefas
-        tarefas.push({ ...doc.data(), id: doc.id }); //usando spread, vai ter um novo array de objetos no formato que a gnt precisa
-    })
+//     //Percorremos cada documento da coleção e inserimos no array de tarefas
+//     snapshot.forEach((doc) => {//percorre esse snapshot, e para cada doc coloca nesse obj tarefas
+//         tarefas.push({ ...doc.data(), id: doc.id }); //usando spread, vai ter um novo array de objetos no formato que a gnt precisa
+//     })
 
+//     return tarefas;
+// }
+
+export async function getTarefasUsuario(idUsuario) {
+    // Filtrar as tarefas da coleção de acordo com o id do usuário
+    const filtro = query(tarefasCol, where("idUsuario", "==", idUsuario));
+    const snapshot = await getDocs(filtro);
+    const tarefas = [];
+  
+    snapshot.forEach((doc) => {
+      tarefas.push({...doc.data(), id: doc.id});
+    });
+  
     return tarefas;
 }
 
